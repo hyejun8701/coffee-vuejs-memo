@@ -4,7 +4,9 @@
     <ul class="memo-list">
       <memo v-for="memo in memos"
       :key="memo.id"
-      :memo="memo" />
+      :memo="memo"
+      @deleteMemo="deleteMemo"
+      @updateMemo="updateMemo" />
     </ul>
   </div>
 </template>
@@ -33,6 +35,20 @@ export default {
     storeMemo () {
       const memoToString = JSON.stringify(this.memos)
       localStorage.setItem('memos', memoToString)
+    },
+    deleteMemo (id) {
+      const targetIndex = this.memos.findIndex(v => v.id === id)
+      this.memos.splice(targetIndex, 1)
+      this.storeMemo()
+    },
+    updateMemo (payload) {
+      const { id, content } = payload
+      const targetIndex = this.memos.findIndex(v => v.id === id)
+      const targetMemo = this.memos[targetIndex]
+      console.log(...targetMemo)
+      console.log(content)
+      this.memos.splice(targetIndex, 1, { ...targetMemo, content })
+      this.storeMemo()
     }
   }
 }

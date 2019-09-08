@@ -32,9 +32,6 @@ export default {
       this.content = ''
     },
     addMemo () {
-      console.log(this)
-      console.log(this.title)
-      console.log(this.content)
       const { title, content } = this
       const id = new Date().getTime()
 

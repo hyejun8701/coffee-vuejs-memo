@@ -3,10 +3,18 @@
     <strong>
       {{ memo.title }}
     </strong>
-    <p>
-      {{ memo.content }}
+    <p @dblclick="handleDblcClick">
+      <template v-if="!isEditing">
+        {{ memo.content }}
+      </template>
+      <input v-else
+        type="text"
+        ref="content"
+        :value="memo.content"
+        @keydown.enter="updateMemo"
+        @blur="updateMemo">
     </p>
-    <button type="button">
+    <button type="button" @click="deleteMemo">
       <i class="fas fa-times"></i>
     </button>
   </li>
@@ -14,9 +22,36 @@
 <script>
 export default {
   name: 'Memo',
+  data () {
+    return {
+      isEditing: false
+    }
+  },
   props: {
     memo : {
       type: Object
+    }
+  },
+  methods: {
+    deleteMemo () {
+      const id = this.memo.id
+      this.$emit('deleteMemo', id)
+    },
+    handleDblcClick () {
+      this.isEditing = true
+      this.$nextTick(() => {
+        this.$refs.content.focus()
+      })
+    },
+    updateMemo (e) {
+      const id = this.memo.id
+      const content = e.target.value.trim()
+      if(content.length <= 0) {
+        return false
+      }
+      this.$emit('updateMemo', { id, content })
+      this.isEditing = false
+
     }
   }
 }
