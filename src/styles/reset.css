@@ -13,3 +13,11 @@ textarea {
   border: none;
   resize: none;
 }
+
+button, a {
+  outline: none;
+}
+
+button, a:hover {
+  cursor: pointer;
+}

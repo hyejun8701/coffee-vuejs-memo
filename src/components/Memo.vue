@@ -12,7 +12,7 @@
         ref="content"
         :value="memo.content"
         @keydown.enter="updateMemo"
-        @blur="updateMemo">
+        @blur="handleBlur">
     </p>
     <button type="button" @click="deleteMemo">
       <i class="fas fa-times"></i>
@@ -51,7 +51,9 @@ export default {
       }
       this.$emit('updateMemo', { id, content })
       this.isEditing = false
-
+    },
+    handleBlur () {
+      this.isEditing = false
     }
   }
 }
