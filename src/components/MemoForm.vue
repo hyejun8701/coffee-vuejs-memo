@@ -14,7 +14,8 @@
               <v-icon>mdi-cached</v-icon>
             </v-btn>
         </div>
-        <button type="submit">등록하기</button>
+        <!-- <button type="submit">등록하기</button> -->
+        <v-btn color="warning" dark type="submit">등록하기</v-btn>
       </fieldset>
     </form>
   </div>
@@ -65,17 +66,17 @@ export default {
     position: absolute;
     right: 20px;
     bottom: 20px;
-    font-size: 16px;
-    background: none;
+    /* font-size: 16px;
+    background: none; */
   }
   .memo-form form fieldset button[type="submit"] {
     float: right;
-    width: 96px;
+    /* width: 96px;
     padding: 12px 0;
     border-radius: 4px;
     background-color: #ff5a00;
     color: #fff;
-    font-size: 16px;
+    font-size: 16px; */
   }
   .memo-form form fieldset .memo-form__title-form {
     width: 100%;
