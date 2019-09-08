@@ -6,11 +6,17 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "vue": "^2.5.11"
+    "axios": "^0.19.0",
+    "style-loader": "^1.0.0",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "vue": "^2.5.11",
+    "vuetify": "^2.0.15",
+    "vuetify-loader": "^1.3.0"
   },
   "browserslist": [
     "> 1%",
@@ -18,13 +24,18 @@
     "not ie <= 8"
   ],
   "devDependencies": {
+    "@mdi/font": "^4.3.95",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
     "cross-env": "^5.0.5",
-    "css-loader": "^0.28.7",
+    "css-loader": "^0.28.11",
+    "deepmerge": "^4.0.0",
+    "fibers": "^4.0.1",
     "file-loader": "^1.1.4",
+    "sass": "^1.23.0-module.beta.1",
+    "sass-loader": "^8.0.0",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",

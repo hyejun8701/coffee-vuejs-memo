@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <app-header />
-    <memo-app />
+    <v-app style="backgroundColor:#f5f5f5;">
+      <app-header />
+      <memo-app />
+    </v-app>
   </div>
 </template>
 

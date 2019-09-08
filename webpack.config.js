@@ -16,7 +16,8 @@ module.exports = {
           'vue-style-loader',
           'css-loader'
         ],
-      },      {
+      },      
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
@@ -36,6 +37,25 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.s(c|a)ss$/,
+        use: [
+          'vue-style-loader',
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            // Requires sass-loader@^8.0.0
+            options: {
+              implementation: require('sass'),
+              sassOptions: {
+                fiber: require('fibers'),
+                indentedSyntax: true // optional
+              },
+            },
+          },
+        ]
       }
     ]
   },

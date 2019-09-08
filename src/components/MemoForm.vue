@@ -10,7 +10,9 @@
           <textarea class="memo-form__content-form"
             v-model="content"
             placeholder="메모의 내용을 입력해주세요." />
-          <button type="reset"><i class="fas fa-sync-alt"></i></button>
+            <v-btn type="reset" text icon color="green">
+              <v-icon>mdi-cached</v-icon>
+            </v-btn>
         </div>
         <button type="submit">등록하기</button>
       </fieldset>
