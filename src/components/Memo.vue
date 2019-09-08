@@ -77,6 +77,7 @@ export default {
     font-size: 20px;
     color: #e5e5e5;
     border: 0;
+    background-color: #fff;
   }
   .memo-item strong {
     display: block;
