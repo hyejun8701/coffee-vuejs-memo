@@ -15,13 +15,25 @@
       :key="memo.id"
       :memo="memo"
       @deleteMemo="deleteMemo"
-      @updateMemo="updateMemo" />
+      @updateMemo="updateMemo"
+      :editingId="editingId"
+      @setEditingId="SET_EDITING_ID"
+      @resetEditingId="RESET_EDITING_ID" />
     </ul>
   </div>
 </template>
 <script>
 import MemoForm from './MemoForm'
 import Memo from './Memo'
+
+import axios from 'axios'
+const memoAPICore = axios.create({
+  baseURL: 'http://localhost:8000/api/memos'
+})
+
+import { mapActions, mapState, mapMutations } from 'vuex'
+import { RESET_EDITING_ID, SET_EDITING_ID } from '../store/mutations-types'
+
 export default {
   name: 'MemoApp',
   components: {
@@ -30,35 +42,28 @@ export default {
   },
   data () {
     return {
-      memos: [],
     }
+  },
+  computed: {
+    ...mapState([
+      'memos',
+      'editingId'
+    ])
   },
   created () {
-    this.memos = localStorage.memos ? JSON.parse(localStorage.memos) : []
+    this.fetchMemos()
   },
   methods: {
-    addMemo (payload) {
-      this.memos.push(payload)
-      this.storeMemo()
-    },
-    storeMemo () {
-      const memoToString = JSON.stringify(this.memos)
-      localStorage.setItem('memos', memoToString)
-    },
-    deleteMemo (id) {
-      const targetIndex = this.memos.findIndex(v => v.id === id)
-      this.memos.splice(targetIndex, 1)
-      this.storeMemo()
-    },
-    updateMemo (payload) {
-      const { id, content } = payload
-      const targetIndex = this.memos.findIndex(v => v.id === id)
-      const targetMemo = this.memos[targetIndex]
-      console.log(...targetMemo)
-      console.log(content)
-      this.memos.splice(targetIndex, 1, { ...targetMemo, content })
-      this.storeMemo()
-    }
+    ...mapActions([
+      'fetchMemos',
+      'addMemo',
+      'deleteMemo',
+      'updateMemo'
+    ]),
+    ...mapMutations([
+      SET_EDITING_ID,
+      RESET_EDITING_ID
+    ])
   }
 }
 </script>

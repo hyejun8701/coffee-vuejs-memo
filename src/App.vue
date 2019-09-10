@@ -2,7 +2,7 @@
   <div id="app">
     <v-app style="backgroundColor:#f5f5f5;">
       <app-header />
-      <memo-app />
+      <memo-app @change="updateMemoCount" />
     </v-app>
   </div>
 </template>
@@ -19,7 +19,12 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      memoCount: 0,
+    }
+  },
+  methods: {
+    updateMemoCount (count) {
+      this.memoCount = count
     }
   }
 }
